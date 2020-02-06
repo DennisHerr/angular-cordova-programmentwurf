@@ -5,9 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-cordova": "ng build --output-path='dist' && cd cordova && cordova run ios",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-to-www": "ng build --prod --base-href . --output-path cordova/www/"
   },
   "private": true,
   "dependencies": {

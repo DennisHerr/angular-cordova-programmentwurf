@@ -8,5 +8,14 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+function initApp() {
+
+  platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.error(err));
+}
+
+if (window.usingCordova) {
+  document.addEventListener('deviceready', initApp, false);
+} else {
+  initApp();
+}

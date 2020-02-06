@@ -46,4 +46,8 @@ testem.log
 Thumbs.db
 
 # cordova
-/cordova/node_modules
+cordova/www/*
+cordova/node_modules/*
+cordova/platforms/*
+cordova/plugins/*
+cordova/js/*
