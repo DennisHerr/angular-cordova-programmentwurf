@@ -10,10 +10,13 @@ export class AppComponent implements OnInit {
   title = 'angular-cordova-programmentwurf';
 
   ngOnInit() {
-    document.addEventListener("deviceready", function () {
-      alert(device.platform);
-    }, false);
+    // code in loginkomponente verschoben
 
+    document.addEventListener("deviceready", function () {
+      this.deviceready = true;
+      //alert(device.platform);
+      
+    }, false);
   }
 
 }

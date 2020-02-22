@@ -14,5 +14,31 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-fingerprint-aio": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-fingerprint-aio"
+    },
+    "is_top_level": true,
+    "variables": {
+      "FACEID_USAGE_DESCRIPTION": "Einloggen =)"
+    }
+  },
+  "cordova-plugin-add-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-add-swift-support@^2.0.2"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-browsersync-gen2": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-browsersync-gen2"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
