@@ -10,8 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-to-www": "ng build --prod --base-href . --output-path cordova/www/",
-    "build-to-www-emulator": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run ios",
-    "build-to-www-device": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run ios --device"
+    "build-to-www-emulator": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run android --emulator",
+    "build-to-www-device": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run android --device"
   },
   "private": true,
   "dependencies": {
