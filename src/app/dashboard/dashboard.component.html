@@ -1,4 +1,6 @@
 <p>dashboard works!</p>
+<input placeholder="Titel" [(ngModel)]="pushBenachrichtigung.title" name="Titel" required>
+<input placeholder="Nachricht" [(ngModel)]="pushBenachrichtigung.body" name="Nachricht" required>
 <button (click) = "pushBenachrichtigungInit()">push</button>
 <button (click) = "postNotification()">Reminder</button>
 <button (click) = "abmelden()">abmelden</button>

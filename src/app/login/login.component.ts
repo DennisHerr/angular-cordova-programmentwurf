@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   constructor(private requestservice: RequestService) {
     this.logindaten = {
       benutzername: "",
-      passwort: "",
+      passwort: ""
     };
   }
 

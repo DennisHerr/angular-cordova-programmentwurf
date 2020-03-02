@@ -9,7 +9,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient) { }
+  public pushBenachrichtigung: {
+    title: string;
+    body: string;
+    date: Date;
+  }
+
+  constructor(private router: Router, private http: HttpClient) { 
+    this.pushBenachrichtigung = {
+      title: "",
+      body: "",
+      date: new Date()
+    };
+  }
 
   ngOnInit() {
     //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -55,12 +67,12 @@ export class DashboardComponent implements OnInit {
       app_id: 'b8e94a13-edce-4c4c-aec2-67211825c0b3',  //ZTdhYmUzODItM2FhOC00ZDgyLTk2ZGMtOGFhNDIwN2Q1OTYw
       include_player_ids: [localStorage.getItem('device_id')],
       contents: {
-        en: "Testnachricht"
+        en: this.pushBenachrichtigung.body
       },
       headings: {
-        en: "Testueberschrift"
+        en: this.pushBenachrichtigung.title
       },
-      send_after: date
+      send_after: date //this.pushBenachrichtigung.date
   };
     this.http.post('https://onesignal.com/api/v1/notifications', body).subscribe(data => {
       console.log(data);
