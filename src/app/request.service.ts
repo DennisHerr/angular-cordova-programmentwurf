@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from "rxjs/operators";
 import { throwError } from 'rxjs';
@@ -12,7 +12,7 @@ export class RequestService {
   baseurl: string = 'http://localhost:3000/';
   endurl: string = '';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private ngZone: NgZone) { }
 
   login(benutzername: string, passwort: string) {
     if (benutzername == 'Testuser' && passwort == 'PW') {
@@ -21,7 +21,8 @@ export class RequestService {
         localStorage.setItem('passwort', passwort);
         localStorage.setItem('autologin', 'true');
         // alert('korrekt');
-        this.router.navigate(['/dashboard']);
+        // Angular 9 + Cordova 9.0.0 Bugfix
+        this.ngZone.run(() =>  this.router.navigate(['/dashboard']));
     } else {
         //alert(benutzername + passwort);
         return false;

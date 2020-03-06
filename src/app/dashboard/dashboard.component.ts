@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,22 +15,25 @@ export class DashboardComponent implements OnInit {
     date: Date;
   }
 
+   timeSet: EventEmitter<string>;
+
   constructor(private router: Router, private http: HttpClient) { 
     this.pushBenachrichtigung = {
       title: "",
       body: "",
-      date: new Date()
+      date: null
     };
   }
 
   ngOnInit() {
-    //document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     //alert('ngOnInit');
-    this.onDeviceReady();
+    //this.onDeviceReady.bind(this);
   }
 
   onDeviceReady() {
     //alert('oneDeviceReady');
+    this.getDeviceID();
   
   }
 
@@ -45,9 +48,7 @@ export class DashboardComponent implements OnInit {
       //console.log('Notification opened: ' + JSON.stringify(openResult));   
   })
     .endInit();
-    if(localStorage.getItem('device_id') == null) {
       this.getDeviceID();
-    }
   }
   abmelden() {
     localStorage.clear();
@@ -55,24 +56,26 @@ export class DashboardComponent implements OnInit {
   }
 
  getDeviceID() {
+   if (localStorage.getItem('device_id') == null) {
      window.plugins.OneSignal.getIds(function(ids) {
        localStorage.setItem('device_id', ids.userId);
       });
+    }
    }
 
    postNotification() {
-    var date = new Date();
-    date.setTime(date.getTime() + 1000 * 60);
     var body = {
       app_id: 'b8e94a13-edce-4c4c-aec2-67211825c0b3',  //ZTdhYmUzODItM2FhOC00ZDgyLTk2ZGMtOGFhNDIwN2Q1OTYw
       include_player_ids: [localStorage.getItem('device_id')],
       contents: {
-        en: this.pushBenachrichtigung.body
+        en: `${this.pushBenachrichtigung.body}`,
+        de: `${this.pushBenachrichtigung.body}`
       },
       headings: {
-        en: this.pushBenachrichtigung.title
+        en: `One Signal: ${this.pushBenachrichtigung.title}`,
+        de: `One Signal: ${this.pushBenachrichtigung.title}`
       },
-      send_after: date //this.pushBenachrichtigung.date
+      send_after: new Date(this.pushBenachrichtigung.date)
   };
     this.http.post('https://onesignal.com/api/v1/notifications', body).subscribe(data => {
       console.log(data);
@@ -80,6 +83,15 @@ export class DashboardComponent implements OnInit {
       console.log(error);
     });
    }
-      
-  
+
+   postNotification2() {
+    window.cordova.plugins.notification.local.schedule({
+      title: `Lokale Benachrichtigung: ${this.pushBenachrichtigung.title}`,
+      text: `${this.pushBenachrichtigung.body}`,
+      foreground: true,
+      trigger: { at: new Date(this.pushBenachrichtigung.date) }
+  });
+
+   }
+
 }

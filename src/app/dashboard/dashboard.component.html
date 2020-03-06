@@ -3,4 +3,21 @@
 <input placeholder="Nachricht" [(ngModel)]="pushBenachrichtigung.body" name="Nachricht" required>
 <button (click) = "pushBenachrichtigungInit()">push</button>
 <button (click) = "postNotification()">Reminder</button>
+<button (click) = "postNotification2()">Reminder2</button>
 <button (click) = "abmelden()">abmelden</button>
+
+<div>
+
+      <input matInput [(ngModel)]="pushBenachrichtigung.date" type="datetime-local">
+
+<!--
+  <mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <ngx-timepicker-field [controlOnly]="true" [format]="24" [defaultTime]="'12:00'"></ngx-timepicker-field>
+  </mat-form-field>
+-->
+  
+
+</div>
+
+

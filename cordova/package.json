@@ -16,9 +16,11 @@
     "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-ios": "^5.1.1",
+    "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-browsersync-gen2": "^1.1.7",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-fingerprint-aio": "^3.0.1",
+    "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "onesignal-cordova-plugin": "2.8.3"
   },
   "devDependencies": {
@@ -32,7 +34,8 @@
         "FACEID_USAGE_DESCRIPTION": "Einloggen =)"
       },
       "cordova-plugin-browsersync-gen2": {},
-      "onesignal-cordova-plugin": {}
+      "onesignal-cordova-plugin": {},
+      "cordova-plugin-local-notification": {}
     },
     "platforms": [
       "android",
