@@ -1,5 +1,17 @@
-<div class="container">
-    <input placeholder="Benutzername" [(ngModel)]="logindaten.benutzername" name="benutzername" required>
-    <input placeholder="Passwort" [(ngModel)]="logindaten.passwort" name="passwort" required>
-    <button (click)="login()">Login</button>
-</div>
+<mat-toolbar md-scroll-shrink>
+    Login
+  </mat-toolbar>
+
+  <mat-card>
+<form class="fullWidth">
+    <mat-form-field class="fullWidth">
+        <mat-label>Benutzername</mat-label>
+        <input matInput placeholder="Benutzername" [(ngModel)]="logindaten.benutzername" name="benutzername" required>
+    </mat-form-field>
+    <mat-form-field class="fullWidth">
+        <mat-label>Passwort</mat-label>
+        <input matInput placeholder="Passwort" [(ngModel)]="logindaten.passwort" name="passwort" required>
+    </mat-form-field>
+    <button mat-button (click)="login()">Login</button>
+</form>
+</mat-card>

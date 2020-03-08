@@ -14,5 +14,21 @@
     -ms-user-select: auto !important;
     user-select: auto !important;
     }
+
+    .spacer {
+        flex: 1 1 auto;
+    }
+
+    .fullWidth {
+        width: 100%;
+    }
+
+    .marginBottom {
+        margin-bottom: 10000px
+    }
+
+    mat-radio-button {
+        margin-right: 16px;
+    }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

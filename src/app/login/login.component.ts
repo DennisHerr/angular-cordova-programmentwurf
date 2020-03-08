@@ -3,6 +3,7 @@ import { CordovaService } from '../cordova.service';
 import { RequestService } from '../request.service';
 declare var device;
 declare var Fingerprint;
+declare var NativeStorage;
 
 @Component({
   selector: 'app-login',
@@ -35,12 +36,12 @@ export class LoginComponent implements OnInit {
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
   }
 
-   onDeviceReady() {
-    this.benutzername = localStorage.getItem('benutzername');
-    this.passwort = localStorage.getItem('passwort');
-    this.autologin = localStorage.getItem('autologin');
+   onDeviceReady() {  
+    // alternative zu localstorage
+    NativeStorage.getItem('benutzername',(key)=> this.benutzername = key);
+    NativeStorage.getItem('passwort',(key)=> this.passwort = key);
+    NativeStorage.getItem('autologin',(key)=> this.autologin = key);
 
-    //alert(this.autologin);
 
     this.deviceready = true;
     // this binding
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit {
 
   biometricAuth() {
     //alert('BIO');
-    if (localStorage.getItem('autologin') == 'true') {
+    if (this.autologin == 'true') {
       Fingerprint.show({
         clientId: "Cordova BIO",
         clientSecret: "password"

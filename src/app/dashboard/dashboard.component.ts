@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+declare var NativeStorage;
 
 @Component({
   selector: 'app-dashboard',
@@ -13,15 +14,17 @@ export class DashboardComponent implements OnInit {
     title: string;
     body: string;
     date: Date;
+    type: string;
   }
 
-   timeSet: EventEmitter<string>;
+  deviceid: string;
 
   constructor(private router: Router, private http: HttpClient) { 
     this.pushBenachrichtigung = {
       title: "",
       body: "",
-      date: null
+      date: null,
+      type: ""
     };
   }
 
@@ -33,12 +36,12 @@ export class DashboardComponent implements OnInit {
 
   onDeviceReady() {
     //alert('oneDeviceReady');
-    this.getDeviceID();
+    this.pushBenachrichtigungInit();
+    this.getDeviceID.bind(this);
   
   }
 
   pushBenachrichtigungInit() {
-    //alert('push');
     console.log(window.plugins.OneSignal);
     
     window.plugins.OneSignal
@@ -51,47 +54,57 @@ export class DashboardComponent implements OnInit {
       this.getDeviceID();
   }
   abmelden() {
-    localStorage.clear();
+    NativeStorage.clear();
     this.router.navigate(['..']);
   }
 
  getDeviceID() {
-   if (localStorage.getItem('device_id') == null) {
+   alert('getDeviceID');
+   window.plugins.OneSignal.getIds(function(ids) {
+    NativeStorage.setItem('device_id', ids.userId);
+   });
+   NativeStorage.getItem('device_id', (key) => this.deviceid = key);
+/*
+   NativeStorage.getItem('device_id', function (key) {
+     if (key == 'undefined') {
      window.plugins.OneSignal.getIds(function(ids) {
-       localStorage.setItem('device_id', ids.userId);
+       NativeStorage.setItem('device_id', ids.userId);
       });
+    } else {
+      this.deviceid = key;
     }
-   }
+   });
+   alert('getDeviceID Ende');*/
+  }
 
    postNotification() {
-    var body = {
-      app_id: 'b8e94a13-edce-4c4c-aec2-67211825c0b3',  //ZTdhYmUzODItM2FhOC00ZDgyLTk2ZGMtOGFhNDIwN2Q1OTYw
-      include_player_ids: [localStorage.getItem('device_id')],
-      contents: {
-        en: `${this.pushBenachrichtigung.body}`,
-        de: `${this.pushBenachrichtigung.body}`
-      },
-      headings: {
-        en: `One Signal: ${this.pushBenachrichtigung.title}`,
-        de: `One Signal: ${this.pushBenachrichtigung.title}`
-      },
-      send_after: new Date(this.pushBenachrichtigung.date)
-  };
-    this.http.post('https://onesignal.com/api/v1/notifications', body).subscribe(data => {
-      console.log(data);
-    } , error => {
-      console.log(error);
+    if (this.pushBenachrichtigung.type == 'onesignal') {
+      var body = {
+        app_id: 'b8e94a13-edce-4c4c-aec2-67211825c0b3',
+        include_player_ids: [this.deviceid],
+        contents: {
+          en: `${this.pushBenachrichtigung.body}`,
+          de: `${this.pushBenachrichtigung.body}`
+        },
+        headings: {
+          en: `One Signal: ${this.pushBenachrichtigung.title}`,
+          de: `One Signal: ${this.pushBenachrichtigung.title}`
+        },
+        send_after: new Date(this.pushBenachrichtigung.date)
+      };
+      this.http.post('https://onesignal.com/api/v1/notifications', body).subscribe(data => {
+        console.log(data);
+      } , error => {
+        console.log(error);
+      });
+     } else if (this.pushBenachrichtigung.type == 'lokal'){
+      window.cordova.plugins.notification.local.schedule({
+        title: `Lokale Benachrichtigung: ${this.pushBenachrichtigung.title}`,
+        text: `${this.pushBenachrichtigung.body}`,
+        foreground: true,
+        trigger: { at: new Date(this.pushBenachrichtigung.date) }
     });
-   }
-
-   postNotification2() {
-    window.cordova.plugins.notification.local.schedule({
-      title: `Lokale Benachrichtigung: ${this.pushBenachrichtigung.title}`,
-      text: `${this.pushBenachrichtigung.body}`,
-      foreground: true,
-      trigger: { at: new Date(this.pushBenachrichtigung.date) }
-  });
-
-   }
+    }
+  } 
 
 }

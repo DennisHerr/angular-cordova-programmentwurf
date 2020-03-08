@@ -3,4 +3,5 @@ interface Window {
     Fingerprint: any
     cordova: any
     plugins: any
+    NativeStorage: any
 }

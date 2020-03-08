@@ -27,6 +27,14 @@
             {
               "xml": "<feature name=\"LocalNotification\"><param name=\"ios-package\" value=\"APPLocalNotification\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"OsTheme\"><param name=\"ios-package\" value=\"OsTheme\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"NativeStorage\"><param name=\"ios-package\" value=\"NativeStorage\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -94,6 +102,12 @@
     },
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-os-theme": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+    },
+    "cordova-plugin-nativestorage": {
+      "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
     }
   },
   "dependent_plugins": {},
@@ -155,6 +169,32 @@
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
       ]
+    },
+    {
+      "id": "cordova-plugin-os-theme.osTheme",
+      "file": "plugins/cordova-plugin-os-theme/theme.js",
+      "pluginId": "cordova-plugin-os-theme",
+      "clobbers": [
+        "cordova.plugins.osTheme"
+      ]
+    },
+    {
+      "id": "cordova-plugin-nativestorage.mainHandle",
+      "file": "plugins/cordova-plugin-nativestorage/www/mainHandle.js",
+      "pluginId": "cordova-plugin-nativestorage",
+      "clobbers": [
+        "NativeStorage"
+      ]
+    },
+    {
+      "id": "cordova-plugin-nativestorage.LocalStorageHandle",
+      "file": "plugins/cordova-plugin-nativestorage/www/LocalStorageHandle.js",
+      "pluginId": "cordova-plugin-nativestorage"
+    },
+    {
+      "id": "cordova-plugin-nativestorage.NativeStorageError",
+      "file": "plugins/cordova-plugin-nativestorage/www/NativeStorageError.js",
+      "pluginId": "cordova-plugin-nativestorage"
     }
   ],
   "plugin_metadata": {
@@ -165,6 +205,8 @@
     "cordova-plugin-browsersync-gen2": "1.1.7",
     "onesignal-cordova-plugin": "2.8.3",
     "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-local-notification": "0.9.0-beta.2"
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-os-theme": "1.0.1",
+    "cordova-plugin-nativestorage": "2.3.2"
   }
 }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, catchError } from "rxjs/operators";
 import { throwError } from 'rxjs';
 import { Router } from "@angular/router"
+declare var NativeStorage;
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +18,14 @@ export class RequestService {
   login(benutzername: string, passwort: string) {
     if (benutzername == 'Testuser' && passwort == 'PW') {
         // mit cordova speicher plugin
-        localStorage.setItem('benutzername', benutzername);
-        localStorage.setItem('passwort', passwort);
-        localStorage.setItem('autologin', 'true');
+        NativeStorage.setItem('benutzername', benutzername);
+        NativeStorage.setItem('passwort', passwort);
+        NativeStorage.setItem('autologin', 'true');
         // alert('korrekt');
         // Angular 9 + Cordova 9.0.0 Bugfix
         this.ngZone.run(() =>  this.router.navigate(['/dashboard']));
     } else {
-        //alert(benutzername + passwort);
+        alert('Zugangsdaten ungültig')
         return false;
     }
   }

@@ -13,6 +13,13 @@ export class AppComponent implements OnInit {
     // code in loginkomponente verschoben
     document.addEventListener("deviceready", function () {
       this.deviceready = true;
+      window.cordova.plugins.osTheme.getTheme()
+        .then(theme => { // { isDark: [boolean] }
+          alert('The current theme is: ' + (theme.isDark ? 'Dark' : 'Light'))
+        })
+        .catch(message => { // string error message
+          alert('Error getting theme: ' + message)
+        })
       //alert(device.platform);
       
     }, false);

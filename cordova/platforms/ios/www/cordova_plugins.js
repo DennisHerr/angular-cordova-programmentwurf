@@ -57,6 +57,32 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
       ]
+    },
+    {
+      "id": "cordova-plugin-os-theme.osTheme",
+      "file": "plugins/cordova-plugin-os-theme/theme.js",
+      "pluginId": "cordova-plugin-os-theme",
+      "clobbers": [
+        "cordova.plugins.osTheme"
+      ]
+    },
+    {
+      "id": "cordova-plugin-nativestorage.mainHandle",
+      "file": "plugins/cordova-plugin-nativestorage/www/mainHandle.js",
+      "pluginId": "cordova-plugin-nativestorage",
+      "clobbers": [
+        "NativeStorage"
+      ]
+    },
+    {
+      "id": "cordova-plugin-nativestorage.LocalStorageHandle",
+      "file": "plugins/cordova-plugin-nativestorage/www/LocalStorageHandle.js",
+      "pluginId": "cordova-plugin-nativestorage"
+    },
+    {
+      "id": "cordova-plugin-nativestorage.NativeStorageError",
+      "file": "plugins/cordova-plugin-nativestorage/www/NativeStorageError.js",
+      "pluginId": "cordova-plugin-nativestorage"
     }
   ];
   module.exports.metadata = {
@@ -67,6 +93,8 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-browsersync-gen2": "1.1.7",
     "onesignal-cordova-plugin": "2.8.3",
     "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-local-notification": "0.9.0-beta.2"
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-os-theme": "1.0.1",
+    "cordova-plugin-nativestorage": "2.3.2"
   };
 });

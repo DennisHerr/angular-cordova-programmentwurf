@@ -1,14 +1,39 @@
-<p>dashboard works!</p>
-<input placeholder="Titel" [(ngModel)]="pushBenachrichtigung.title" name="Titel" required>
-<input placeholder="Nachricht" [(ngModel)]="pushBenachrichtigung.body" name="Nachricht" required>
-<button (click) = "pushBenachrichtigungInit()">push</button>
-<button (click) = "postNotification()">Reminder</button>
-<button (click) = "postNotification2()">Reminder2</button>
-<button (click) = "abmelden()">abmelden</button>
+<mat-toolbar md-scroll-shrink>
+  <span>Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-button (click) = "abmelden()">abmelden</button>
+</mat-toolbar>
+<mat-card>
+<form class="fullWidth">
+  <mat-form-field class="fullWidth">
+    <mat-label>Titel:</mat-label>
+    <input matInput placeholder="Titel" [(ngModel)]="pushBenachrichtigung.title" name="titel" required>
+  </mat-form-field>
 
-<div>
+<mat-form-field class="fullWidth">
+  <mat-label>Nachricht:</mat-label>
+  <textarea matInput placeholder="Nachricht" [(ngModel)]="pushBenachrichtigung.body" name="nachricht" required></textarea>
+</mat-form-field>
 
-      <input matInput [(ngModel)]="pushBenachrichtigung.date" type="datetime-local">
+    <mat-radio-group [(ngModel)]="pushBenachrichtigung.type" name="typ" class="fullWidth marginBottom">
+      <mat-radio-button value="lokal">Lokal</mat-radio-button>
+      <mat-radio-button value="onesignal">One Signal</mat-radio-button>
+    </mat-radio-group>
+
+    <br />
+    <br />
+    <mat-form-field class="fullWidth">
+      <mat-label>Zeitpunkt:</mat-label>
+    <input matInput [(ngModel)]="pushBenachrichtigung.date" type="datetime-local" name="datum">
+  </mat-form-field>
+
+
+  <button mat-button (click) = "postNotification()">Reminder</button>
+</form>
+</mat-card>
+
+
+     
 
 <!--
   <mat-form-field>
@@ -17,7 +42,4 @@
   </mat-form-field>
 -->
   
-
-</div>
-
 

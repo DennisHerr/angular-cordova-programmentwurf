@@ -64,5 +64,21 @@
     },
     "is_top_level": false,
     "variables": {}
+  },
+  "cordova-plugin-os-theme": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-os-theme"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-nativestorage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-nativestorage"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
