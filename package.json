@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "~9.0.4",
     "@angular/router": "~9.0.4",
     "@mat-datetimepicker/core": "^4.0.1",
+    "angular-material-dynamic-themes": "^1.0.4",
     "ngx-material-timepicker": "^5.4.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

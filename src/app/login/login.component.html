@@ -1,5 +1,6 @@
 <mat-toolbar md-scroll-shrink>
     Login
+    <span class="spacer"></span>
   </mat-toolbar>
 
   <mat-card>
@@ -12,6 +13,6 @@
         <mat-label>Passwort</mat-label>
         <input matInput placeholder="Passwort" [(ngModel)]="logindaten.passwort" name="passwort" required>
     </mat-form-field>
-    <button mat-button (click)="login()">Login</button>
+    <button color="primary" mat-button (click)="login()">Login</button>
 </form>
 </mat-card>

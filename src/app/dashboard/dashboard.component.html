@@ -12,7 +12,7 @@
 
 <mat-form-field class="fullWidth">
   <mat-label>Nachricht:</mat-label>
-  <textarea matInput placeholder="Nachricht" [(ngModel)]="pushBenachrichtigung.body" name="nachricht" required></textarea>
+  <input matInput placeholder="Nachricht" [(ngModel)]="pushBenachrichtigung.body" name="nachricht" required>
 </mat-form-field>
 
     <mat-radio-group [(ngModel)]="pushBenachrichtigung.type" name="typ" class="fullWidth marginBottom">
@@ -24,7 +24,7 @@
     <br />
     <mat-form-field class="fullWidth">
       <mat-label>Zeitpunkt:</mat-label>
-    <input matInput [(ngModel)]="pushBenachrichtigung.date" type="datetime-local" name="datum">
+    <input matInput [(ngModel)]="pushBenachrichtigung.date" type="datetime-local" name="datum" required>
   </mat-form-field>
 
 

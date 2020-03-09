@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 declare var NativeStorage;
@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   deviceid: string;
 
-  constructor(private router: Router, private http: HttpClient) { 
+  constructor(private router: Router, private http: HttpClient,  private ngZone: NgZone) { 
     this.pushBenachrichtigung = {
       title: "",
       body: "",
@@ -55,26 +55,15 @@ export class DashboardComponent implements OnInit {
   }
   abmelden() {
     NativeStorage.clear();
-    this.router.navigate(['..']);
+    this.ngZone.run(() => this.router.navigate(['..']));
   }
 
  getDeviceID() {
-   alert('getDeviceID');
    window.plugins.OneSignal.getIds(function(ids) {
     NativeStorage.setItem('device_id', ids.userId);
    });
    NativeStorage.getItem('device_id', (key) => this.deviceid = key);
-/*
-   NativeStorage.getItem('device_id', function (key) {
-     if (key == 'undefined') {
-     window.plugins.OneSignal.getIds(function(ids) {
-       NativeStorage.setItem('device_id', ids.userId);
-      });
-    } else {
-      this.deviceid = key;
-    }
-   });
-   alert('getDeviceID Ende');*/
+
   }
 
    postNotification() {

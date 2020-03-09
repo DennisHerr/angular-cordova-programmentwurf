@@ -42,31 +42,26 @@ export class LoginComponent implements OnInit {
     NativeStorage.getItem('passwort',(key)=> this.passwort = key);
     NativeStorage.getItem('autologin',(key)=> this.autologin = key);
 
-
     this.deviceready = true;
     // this binding
-       Fingerprint.isAvailable(isAvailableSuccess.bind(this), isAvailableError.bind(this));
+    Fingerprint.isAvailable(isAvailableSuccess.bind(this), isAvailableError.bind(this));
 
     function isAvailableSuccess(result) {
         //  Prüfung auf Speicher
-        // alert(result);
         if (this.autologin == 'true') {
          this.login(true);
         }
          }
     
     function isAvailableError(error) {
-       // 'error' will be an object with an error code and message
-       //alert(error.message);
+       alert('Sie haben keine biometrische Authentifzierung auf Ihrem Gerät eingerichtet.');
      }
   }
 
    login(auto?: boolean) {
     if (auto) {
-     //alert(`auto: ${auto}`);
       this.biometricAuth();
     } else {
-     // alert(`manuell: ${auto}`);
      this.requestservice.login(this.logindaten.benutzername, this.logindaten.passwort);
     }
   }
@@ -84,13 +79,10 @@ export class LoginComponent implements OnInit {
     }
 
     function successCallback(result){
-      //alert(`successCallback: ${result}`);
-      //alert(this.benutzername + this.passwort + this.autologin);
         this.requestservice.login(this.benutzername, this.passwort);
     }
   
      function errorCallback(err){
-      //alert(`errorCallback`);
     }
   }  
 

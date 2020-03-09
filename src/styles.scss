@@ -30,5 +30,41 @@
     mat-radio-button {
         margin-right: 16px;
     }
+    
+    mat-card {
+        height: 100%;
+    }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+@import '~@angular/material/theming';
+ 
+@include mat-core();
+ 
+// Add your desired themes to this map. 
+$themes-map: (
+  indigo-pink: (
+    primary-base: $mat-indigo,
+    accent-base: $mat-pink,
+  ),
+ 
+  deeppurple-amber: (
+    primary-base: $mat-deep-purple,
+    accent-base: $mat-amber,
+  ),
+ 
+  pink-bluegrey: (
+    primary-base: $mat-pink,
+    accent-base: $mat-blue-gray,
+  ),
+ 
+  purple-green: (
+    primary-base: $mat-purple,
+    accent-base: $mat-green,
+  ),
+);
+ 
+// Import the module and do the job: 
+@import '~angular-material-dynamic-themes/themes-core';
+@include make-stylesheets($themes-map);
