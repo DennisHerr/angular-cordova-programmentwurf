@@ -16,22 +16,20 @@ export class AppComponent implements OnInit {
     isThemeDark = false
     activeTheme: string
     deviceready: boolean
-    darklight: string = 'hi'
+    darklight: string
     
-
     constructor(private overlayContainer: OverlayContainer) {
       // Set default theme here:
-      this.setActiveTheme('deeppurple-amber', /* darkness: */ false)
+      this.setActiveTheme('indigo-pink', /* darkness: */ false)
   }
 
   ngOnInit() {
-    
     // code in loginkomponente verschoben
     document.addEventListener("deviceready", () => {
       this.deviceready = true;
       window.cordova.plugins.osTheme.getTheme()
         .then(theme => { // { isDark: [boolean] }     
-          theme.isDark ? this.toggleDarkness() : alert('light');
+          theme.isDark ? this.toggleDarkness() : null//alert('light');
          // alert('The current theme is: ' + (theme.isDark ? 'Dark' : 'Light'))
         })
         .catch(message => { // string error message
@@ -46,10 +44,11 @@ export class AppComponent implements OnInit {
     if (darkness === null)
         darkness = this.isThemeDark
     else if (this.isThemeDark === darkness) {
+      theme = 'pink-bluegrey';
         if (this.activeTheme === theme) return
     } else
         this.isThemeDark = darkness
-
+    theme = 'indigo-pink'
     this.activeTheme = theme
 
     const cssClass = darkness === true ? theme + THEME_DARKNESS_SUFFIX : theme
@@ -68,5 +67,6 @@ toggleDarkness() {
     this.setActiveTheme(this.activeTheme, !this.isThemeDark)
 
 }
+
 
 }

@@ -1,9 +1,5 @@
-<mat-toolbar md-scroll-shrink>
-    Login
-    <span class="spacer"></span>
-  </mat-toolbar>
-
   <mat-card>
+      <h2>Login</h2>
 <form class="fullWidth">
     <mat-form-field class="fullWidth">
         <mat-label>Benutzername</mat-label>
@@ -13,6 +9,7 @@
         <mat-label>Passwort</mat-label>
         <input matInput placeholder="Passwort" [(ngModel)]="logindaten.passwort" name="passwort" required>
     </mat-form-field>
-    <button color="primary" mat-button (click)="login()">Login</button>
+    <button color="primary" mat-raised-button color="primary" (click)="login()">Anmelden</button>
+    <button *ngIf="autologintemplate" mat-raised-button color="accent" (click)="biometricAuth()" color="primary" mat-button>Biometrisches Anmelden</button>
 </form>
 </mat-card>

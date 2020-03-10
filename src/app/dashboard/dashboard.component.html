@@ -1,9 +1,9 @@
-<mat-toolbar md-scroll-shrink>
-  <span>Dashboard</span>
-  <span class="spacer"></span>
-  <button mat-button (click) = "abmelden()">abmelden</button>
-</mat-toolbar>
 <mat-card>
+  <div class="displayInline">
+  <h2>Dashboard</h2>
+  <button mat-raised-button (click) = "ausloggen()">Ausloggen</button>
+  <button mat-raised-button color="warn" (click) = "abmelden()">Abmelden</button>
+</div>
 <form class="fullWidth">
   <mat-form-field class="fullWidth">
     <mat-label>Titel:</mat-label>
@@ -28,7 +28,7 @@
   </mat-form-field>
 
 
-  <button mat-button (click) = "postNotification()">Reminder</button>
+  <button mat-raised-button color="primary" (click) = "postNotification()">Senden</button>
 </form>
 </mat-card>
 

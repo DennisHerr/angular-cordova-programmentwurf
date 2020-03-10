@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    NativeStorage.getItem('loggedin',(key)=> key !== 'true' ? this.ausloggen() : null);
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     //alert('ngOnInit');
     //this.onDeviceReady.bind(this);
@@ -53,8 +54,13 @@ export class DashboardComponent implements OnInit {
     .endInit();
       this.getDeviceID();
   }
+
   abmelden() {
     NativeStorage.clear();
+    this.ngZone.run(() => this.router.navigate(['..']));
+  }
+
+  ausloggen() {
     this.ngZone.run(() => this.router.navigate(['..']));
   }
 

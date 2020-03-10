@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   matching: boolean = false;
   
   autologin: string = '';
+  autologintemplate: boolean = false;
   benutzername: string = '';
   passwort: string = '';
 
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
     // alternative zu localstorage
     NativeStorage.getItem('benutzername',(key)=> this.benutzername = key);
     NativeStorage.getItem('passwort',(key)=> this.passwort = key);
-    NativeStorage.getItem('autologin',(key)=> this.autologin = key);
+    NativeStorage.getItem('autologin',(key)=>  key == 'true' ? (this.autologin = key, this.autologintemplate = true) : (this.autologin = key, this.autologintemplate = false));
 
     this.deviceready = true;
     // this binding
@@ -67,8 +68,8 @@ export class LoginComponent implements OnInit {
   }
 
   biometricAuth() {
-    //alert('BIO');
     if (this.autologin == 'true') {
+      this.autologintemplate = true;
       Fingerprint.show({
         clientId: "Cordova BIO",
         clientSecret: "password"

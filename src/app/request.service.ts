@@ -21,6 +21,8 @@ export class RequestService {
         NativeStorage.setItem('benutzername', benutzername);
         NativeStorage.setItem('passwort', passwort);
         NativeStorage.setItem('autologin', 'true');
+        NativeStorage.setItem('loggedin', 'true');
+
         // alert('korrekt');
         // Angular 9 + Cordova 9.0.0 Bugfix
         this.ngZone.run(() =>  this.router.navigate(['/dashboard']));
