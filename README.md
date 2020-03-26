@@ -1,27 +1,31 @@
 # AngularCordovaProgrammentwurf
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
+Im ersten Schritt muss in den Projektordner navigiert werden. Danach müssen die Pakete mit deren Abhängigkeiten installiert werden. Dabei ist zu beachten, dass dies sowohl für das Angular Projekt als auch für das Cordova Projekt erledigt werden muss. Um dies zu vereinfachen, wurde ein npm Befehl in der **package.json** definiert.
 
-## Development server
+*npm run install-node-modules*
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Dieser Befehl erledigt im Grunde folgendes.
 
-## Code scaffolding
+*npm install && cd cordova && npm install -g cordova && npm install*
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Zuletzt muss der **www** Ordner im cordova Projekt mit den Angular Webfiles angelegt werden.
 
-## Build
+*npm run build-to-www*
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Anschließend ist es möglich in das Cordova Projekt zu navigieren und die einzelnen Varianten der App auszuführen.
 
-## Running unit tests
+Alternativ kann die entsprechende Variante der App direkt nach dem Erzeugen des **www** Ordners ausgeführt werden.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+*npm run build-to-www-emulator-android*
 
-## Running end-to-end tests
+*npm run build-to-www-emulator-ios*
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+*npm run build-to-www-device-android*
 
-## Further help
+*npm run build-to-www-device-ios*
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+*npm run build-to-www-browser*
+
+Das Projekt wurde aufgrund der Push Nachrichten Funktionalität in der fortgeschrittenen Entwicklung ausschließlich auf einem emulierten Android Gerät getestet.
+
+Bei jeder Änderung des Angular Programmcodes, müssen die Webfiles im **www** Ordner erneut erzeugt werden.
