@@ -13,7 +13,8 @@
     "build-to-www-emulator-android": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run android --emulator",
     "build-to-www-emulator-ios": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run ios --emulator",
     "build-to-www-device-android": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run android --device",
-    "build-to-www-device-ios": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run ios --device"
+    "build-to-www-device-ios": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run ios --device",
+    "build-to-www-device-browser": "ng build --prod --base-href . --output-path cordova/www/ && cd cordova && cordova run browser"
   },
   "private": true,
   "dependencies": {

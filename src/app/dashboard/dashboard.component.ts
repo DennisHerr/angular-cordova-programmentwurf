@@ -100,6 +100,7 @@ export class DashboardComponent implements OnInit {
         trigger: { at: new Date(this.pushBenachrichtigung.date) }
     });
     }
+    alert('Terminierung der Push Nachricht war erfolgreich.')
   } 
 
 }
